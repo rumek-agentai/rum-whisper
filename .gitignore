@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env.local
+.env.*.local
+
+# Secrets & credentials
+.env
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# uv
+.uv/
+uv.lock
+
+# Models (large binary files — download separately)
+models/
+*.bin
+*.ct2
+*.ot
+*.gguf
+*.safetensors
+tokenizer.json
+vocabulary.json
+config.json
+
+# Audio files
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.aac
+*.wma
+recordings/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# PyInstaller
+*.spec
+dist-pyinstaller/
+
+# Logs
+*.log
+logs/

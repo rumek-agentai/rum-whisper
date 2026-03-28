@@ -1,0 +1,95 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rum-whisper"
+version = "0.1.0"
+description = "Offline speech-to-text desktop app for Windows, powered by faster-whisper"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "Bartosz Romaniuk", email = "rum-coder@quasar.us" },
+]
+keywords = ["speech-to-text", "whisper", "offline", "transcription", "windows"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+
+dependencies = [
+    # Audio capture
+    "sounddevice>=0.4.6",
+    "soundfile>=0.12.1",
+    "pyaudiowpatch>=0.2.12",       # WASAPI loopback on Windows
+    "numpy>=1.26.0",
+
+    # Transcription
+    "faster-whisper>=1.0.3",
+    "ctranslate2>=4.4.0",
+
+    # Model management
+    "huggingface-hub>=0.23.0",
+    "platformdirs>=4.2.0",
+
+    # GUI
+    "customtkinter>=5.2.2",
+
+    # Clipboard
+    "pyperclip>=1.9.0",
+
+    # Config
+    "pydantic-settings>=2.2.1",
+    "pydantic>=2.7.0",
+]
+
+[project.scripts]
+rum-whisper = "rum_whisper.__main__:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=5.0.0",
+    "black>=24.4.0",
+    "isort>=5.13.0",
+    "ruff>=0.4.4",
+    "mypy>=1.10.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rum_whisper"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "PIE", "T20", "RET", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q --tb=short --no-header"
+
+[tool.coverage.run]
+source = ["src/rum_whisper"]
+omit = ["tests/*"]
