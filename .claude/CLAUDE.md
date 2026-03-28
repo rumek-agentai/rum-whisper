@@ -75,6 +75,7 @@ Scopes: audio, transcription, gui, config, deps
 | Large files | `head -50` or Read with offset/limit |
 | `rg` (search) | `rg -l` (file list) or `rg -m 5` (cap) |
 | >50 lines output | pipe `| head -N` |
+| git commands | always `--no-pager` |
 
 **Rule:** Before running ANY command that may produce >50 lines, add output limiting.
 

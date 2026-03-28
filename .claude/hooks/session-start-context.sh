@@ -14,7 +14,7 @@ fi
 
 # Inject lessons learned
 if [ -f "LESSONS.md" ]; then
-    LESSON_COUNT=$(grep -c '^### ' LESSONS.md 2>/dev/null || echo "0")
+    LESSON_COUNT=$(grep -c '^## Lesson ' LESSONS.md 2>/dev/null || echo "0")
     if [ "$LESSON_COUNT" -gt 0 ]; then
         echo ""
         echo "=== LESSONS LEARNED ($LESSON_COUNT entries) ==="

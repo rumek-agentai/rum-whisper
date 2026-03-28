@@ -13,6 +13,7 @@ Uses huggingface_hub.snapshot_download for atomic, resumable downloads.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -88,7 +89,7 @@ class ModelManager:
     async def download(
         self,
         model_name: str,
-        progress_callback: "ProgressCallback | None" = None,
+        progress_callback: ProgressCallback | None = None,
     ) -> Path:
         """
         Download a model from Hugging Face Hub (async, resumable).
@@ -120,7 +121,7 @@ class ModelManager:
 
 
 # Type alias for download progress callbacks
-ProgressCallback = "Callable[[int, int], None]"
+ProgressCallback = Callable[[int, int], None]
 
 
 class DownloadError(RuntimeError):

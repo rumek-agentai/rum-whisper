@@ -23,7 +23,16 @@ BLOCKED_PATTERNS=(
 
 for pattern in "${BLOCKED_PATTERNS[@]}"; do
     if [[ "$FILE_PATH" == $pattern ]]; then
-        echo '{"permissionDecision": "deny", "reason": "Protected file pattern: '"$pattern"'"}'
+        python3 -c "
+import json, sys
+print(json.dumps({
+    'hookSpecificOutput': {
+        'hookEventName': 'PreToolUse',
+        'permissionDecision': 'deny',
+        'permissionDecisionReason': 'Protected file pattern: $pattern'
+    }
+}))
+"
         exit 0
     fi
 done
